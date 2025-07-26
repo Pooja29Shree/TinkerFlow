@@ -1,0 +1,32 @@
+# Node.js (backend)
+backend/node_modules/
+backend/.env
+backend/package-lock.json
+
+# React (frontend)
+React/node_modules/
+React/.env
+React/build/
+React/package-lock.json
+
+# Logs
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Test coverage
+coverage/
+
+# PM2 or process manager
+*.pid
+
+# Database dumps or local data
+dump/
