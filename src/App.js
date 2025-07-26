@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Quiz from './components/Quize';
+import Home from './components/Home';
+import './index.css';
+import cLogo from './assets/C.png';
+import pythonLogo from './assets/python.png';
 
-function App() {
+export default function App() {
+  const [started, setStarted] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+
+      {/* PNG Background Logos */}
+      <img src={cLogo} className="bg-logo c-logo" alt="C Logo" />
+      <img src={pythonLogo} className="bg-logo python-logo" alt="Python Logo" />
+
+      {!started ? <Home onStart={() => setStarted(true)} /> : <Quiz />}
     </div>
   );
 }
-
-export default App;
