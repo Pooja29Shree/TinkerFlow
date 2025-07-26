@@ -1,0 +1,36 @@
+Project Structure
+
+   App
+    |
+    |_ Login
+         |
+         |_ Main page --> contents: User logo(at top right corner), Name of app(At top left corner),Programming languages available(at the center of page)
+                |
+                |_ Click on user logo -> Show user info
+                |
+                |_ Click on any available languages
+                                |
+                                |_ Goes inside that --> contents:Go back(at top left corner), user logo(beside go back option), each levels in that language(clickable)(5 levels)
+                                        |												     |
+                                        | 												     |_ each level has link to download
+                                        | 												             the exercise
+                                        | 												     |
+                                        | 												     |_Also has link to that web page
+                                        | 
+                                        | 
+                                        |                                                                                                 
+                                        |_ Click on "Go back" -> goes to available languages page                                           
+                                        |                                                                                                                
+                                        |_ Click on user logo -> Shows user info
+                                        
+                Each Levels
+                    |
+                    |_ When clicked online option (Goes online)
+                                    |
+                                    |_ In online page --> Which level (Top left corner), User info(Top right corner), and page divided into 2 parts(Content,Visuals(for the content))
+                                                          And below that content (Text to voice, Workout code, Quiz)
+                                    
+                    |
+                    |_ When download clicked
+                              |
+                              |_ Downloads the resources --> Content: same as in online page
