@@ -12,7 +12,7 @@ const subjectSchema = new mongoose.Schema({
     required: true,
   },
   content: {
-    type: [String], // array of paragraphs
+    type: [String],
     required: true,
   },
   pdfLink: {
@@ -22,5 +22,7 @@ const subjectSchema = new mongoose.Schema({
     type: String,
   }
 });
+
+subjectSchema.index({ subject: 1, level: 1 }, { unique: true });
 
 module.exports = mongoose.model('Subject', subjectSchema);
