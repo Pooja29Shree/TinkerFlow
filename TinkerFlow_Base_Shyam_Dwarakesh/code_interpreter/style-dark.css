@@ -1,0 +1,162 @@
+.container {
+    background: #0d1117;
+}
+
+.bgtitle {
+    color: #c9d1d9;
+}
+
+.terImg:hover {
+    background-color: #2d3748;
+}
+
+.ftitle {
+    background-color: #2d3748;
+}
+
+.sfile {
+    border: 2px solid #2d3748;
+}
+
+.fname {
+    color: #c9d1d9;
+}
+
+.fname:hover {
+    background-color: #2d3748;
+}
+
+#left-panel {
+    background: #0d1117;
+    color: #fff;
+}
+
+#right-panel {
+    background: #0d1117;
+    border-left: 2px solid #141a23;
+    color: #fff;
+}
+
+.options {
+    filter: invert(0.6);
+}
+
+.options:hover {
+    filter: invert(1);
+}
+
+input[type="text"] {
+    border: 1px solid #2d3748;
+    background-color: #1a1f27;
+    color: #c9d1d9;
+}
+
+#question {
+    border: 1px solid #2d3748;
+    background-color: #1a1f27;
+    color: #c9d1d9;
+}
+
+#sendQuery {
+    color: #fff;
+    background-color: #0d1117;
+    border: 2px solid #2d3748;
+}
+
+#sendQuery:hover {
+    background-color: #2d3748;
+}
+
+.gemini {
+    color: #c9d1d9;
+}
+
+.user {
+    color: #c9d1d9;
+    background-color: #1e252e;
+}
+
+#controls {
+    background: #0a0d12;
+    color: #fff;
+}
+
+#controls select {
+    background: #1a1f27;
+    color: #fff;
+    border: 1px solid #2d3748;
+}
+
+#outputWindow {
+    background: #141a23;
+    color: #c9d1d9;
+}
+
+#mic {
+    border: 2px solid #000;
+    filter: invert(0.9);
+}
+
+.file-name {
+    background: #1a1f27;
+    border: 1px solid #2d3748;
+}
+
+.file-name:hover {
+    background: #2d3748;
+}
+
+.selected-file {
+    background: #2d3748;
+    color: #fff;
+}
+
+button {
+    background: #1a1f27;
+    color: #fff;
+    border: 1px solid #2d3748;
+}
+
+button:hover {
+    background: #2d3748;
+}
+
+::-webkit-scrollbar-track {
+    border: 0.5px solid #21262d;
+    background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #21262d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #272d36;
+}
+
+.terImg img {
+    filter: invert(1);
+}
+
+.closefile:hover {
+    background-color: #0d1117;
+}
+
+.filemanager {
+    background-color: #0d1117;
+    color: #c9d1d9;
+}
+
+.file-item {
+    background-color: #1a1f27;
+    border: 1px solid #2d3748;
+    color: #c9d1d9;
+}
+
+.file-item:hover {
+    background-color: #2d3748;
+}
+
+.terminal-wrapper {
+    background-color: #141a23;
+}

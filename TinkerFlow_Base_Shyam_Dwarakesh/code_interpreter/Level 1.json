@@ -1,0 +1,7 @@
+{
+    "1": "Write a Python program that asks your name and prints:\nHello, &lt;your name&gt;! Welcome to Python.",
+    "2": "Write a program that asks your age and prints how old you will be after 5 years.",
+    "3": "Store the price of 1 kg of rice in a variable (example: 50). Ask the user how many kgs they want and print the total cost.",
+    "4": "Convert temperature from Celsius to Fahrenheit (formula: F = C x 9/5 + 32).",
+    "5": "Write a program that takes two numbers and prints their sum, difference, product, and division."
+}
