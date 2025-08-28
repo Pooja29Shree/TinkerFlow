@@ -1,0 +1,163 @@
+.container {
+    background: #ffffff;
+}
+
+.bgtitle {
+    color: #374151;
+}
+
+.terImg:hover {
+    background-color: #e5e7eb;
+}
+
+.ftitle {
+    background-color: #e5e7eb;
+}
+
+.sfile {
+    border: 2px solid #d1d5db;
+}
+
+.fname {
+    color: #374151;
+}
+
+.fname:hover {
+    background-color: #e5e7eb;
+}
+
+#left-panel {
+    background: #ffffff;
+    color: #111827;
+}
+
+#right-panel {
+    background: #ffffff;
+    border-left: 2px solid #f5f5f5;
+    color: #111827;
+}
+
+.options {
+    filter: invert(0.7);
+}
+
+.options:hover {
+    filter: invert(0);
+}
+
+input[type="text"] {
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    color: #374151;
+}
+
+#question {
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    color: #374151;
+}
+
+#sendQuery {
+    color: #111827;
+    background-color: #ffffff;
+    border: 2px solid #d1d5db;
+}
+
+#sendQuery:hover {
+    background-color: #e5e7eb;
+}
+
+.gemini {
+    color: #374151;
+}
+
+.user {
+    color: #111827;
+    background-color: #f3f4f6;
+}
+
+#controls {
+    background: #f8fafc;
+    color: #111827;
+}
+
+#controls select {
+    background: #f9fafb;
+    color: #111827;
+    border: 1px solid #d1d5db;
+}
+
+#outputWindow {
+    background: #f5f5f5;
+    color: #374151;
+}
+
+#mic {
+    border: 2px solid #000;
+    filter: invert(0.3);
+}
+
+.file-name {
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+}
+
+.file-name:hover {
+    background: #e5e7eb;
+}
+
+.selected-file {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+button {
+    background: #f9fafb;
+    color: #111827;
+    border: 1px solid #d1d5db;
+}
+
+button:hover {
+    background: #e5e7eb;
+}
+
+::-webkit-scrollbar-track {
+    border-left: 0.5px solid #d1d5db;
+    border-right:0.5px solid #d1d5db;
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.terImg img {
+    filter: invert(0);
+}
+
+.closefile:hover {
+    background-color: #c4c8cf;
+}
+
+.filemanager {
+    background-color: #f5f5f5;
+    color: #111827;
+}
+
+.file-item {
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    color: #374151;
+}
+
+.file-item:hover {
+    background-color: #e5e7eb;
+}
+
+.terminal-wrapper {
+    background-color: #f5f5f5;
+}
