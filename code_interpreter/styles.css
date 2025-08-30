@@ -180,6 +180,14 @@ input[type="text"] {
     align-items: center;
 }
 
+#query:disabled, #sendQuery:disabled{
+    cursor: not-allowed;
+}
+
+#sendQuery:disabled:hover {
+    background: inherit;
+}
+
 .gemini {
     font-size: 16px;
     margin-top: 20px;

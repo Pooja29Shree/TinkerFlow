@@ -94,7 +94,14 @@ input[type="text"] {
 
 #mic {
     border: 2px solid #000;
-    filter: invert(0.3);
+    /* filter: invert(0.3); */
+}
+
+#mic:hover{
+    border: 2px solid #cb6724;
+    background-color: #cb6724;
+    filter:invert(1);
+    cursor: pointer;
 }
 
 .file-name {

@@ -8,15 +8,11 @@ const loginUser = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    // Validation
     if (!username || !password) {
-      return res.status(400).json({
-        success: false,
-        message: 'Username and password are required'
-      });
+      return res.status(400).json({ success: false, message: 'Username and password are required' });
     }
 
-    // Find user by username or email
+    // Find by username OR email
     const user = await User.findOne({
       $or: [
         { username: username.toLowerCase() },
@@ -24,74 +20,83 @@ const loginUser = async (req, res) => {
       ]
     });
 
-    if (!user) {
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid credentials'
-      });
-    }
+    if (!user) return res.status(401).json({ success: false, message: 'Invalid credentials' });
 
-    // Check if user is active
     if (user.status !== 'active') {
-      return res.status(403).json({
-        success: false,
-        message: 'Account is not active. Please contact support.'
-      });
+      return res.status(403).json({ success: false, message: 'Account not active' });
     }
 
-    // Verify password
     const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid credentials'
-      });
-    }
+    if (!isPasswordValid) return res.status(401).json({ success: false, message: 'Invalid credentials' });
 
     // Update last login
     user.lastLogin = new Date();
     await user.save();
 
-    // Store user session
-    req.session.user = {
-      id: user._id,
-      username: user.username,
-      email: user.email,
-      isAdmin: user.isAdmin
-    };
-
-    // Remove password from response
-    const userResponse = {
-      id: user._id,
-      username: user.username,
-      email: user.email,
-      phone: user.phone,
-      profileImageUrl: user.profileImageUrl,
-      isAdmin: user.isAdmin,
-      status: user.status,
-      createdAt: user.createdAt,
-      lastLogin: user.lastLogin
-    };
-
     res.status(200).json({
       success: true,
       message: 'Login successful',
       data: {
-        user: userResponse
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          phone: user.phone,
+          isAdmin: user.isAdmin
+        }
       }
     });
 
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Internal server error'
-    });
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
 
+// Register Controller
+const registerUser = async (req, res) => {
+  try {
+    const { username, email, phone, password } = req.body;
+
+    // Validation
+    if (!username || !email || !phone || !password) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+
+    // Check if user exists
+    const existingUser = await User.findOne({
+      $or: [{ username }, { email }, { phone }]
+    });
+
+    if (existingUser) {
+      return res.status(409).json({ success: false, message: 'User already exists' });
+    }
+
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create user
+    const newUser = await User.create({
+      username,
+      email,
+      phone,
+      password: hashedPassword
+    });
+
+    res.status(201).json({ 
+      success: true, 
+      message: 'Account created successfully', 
+      data: { userId: newUser._id, username: newUser.username, email: newUser.email } 
+    });
+
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
 
 module.exports = {
-  loginUser
+  loginUser,
+  registerUser
 };

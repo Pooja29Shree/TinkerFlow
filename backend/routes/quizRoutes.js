@@ -13,12 +13,11 @@ const {
   checkLevelEligibility,
   rateLimiter,
   validateUsername
-} = require('../middleware/quizMiddleware');
+} = require('../middlewares/quizMiddleware');
 
 router.get(
   '/questions/:subject/:level',
   validateQuizParams,
-  checkLevelEligibility,
   getQuestions
 );
 

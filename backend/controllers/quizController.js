@@ -231,9 +231,19 @@ const getUserLevels = async (req, res) => {
       });
     }
 
-    const levels = await Leveldata.find({ 
-      username: username.toLowerCase() 
-    });
+    // Find all level data for the user
+    let levels = await Leveldata.find({ username: username.toLowerCase() });
+
+    // If no levels exist, create default level 1 for all subjects (or at least one subject)
+    if (levels.length === 0) {
+      const defaultLevel = new Leveldata({
+        username: username.toLowerCase(),
+        subject: "default",  // or replace with the subject you want
+        level: 1
+      });
+      await defaultLevel.save();
+      levels = [defaultLevel];
+    }
 
     res.status(200).json({
       success: true,

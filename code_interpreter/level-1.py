@@ -1,2 +1,2 @@
-name = input("உங்கள் பெயர் என்ன? ")
+name = input("Who are you? "
 print(f"Hello, {name}! Welcome to Python.")

@@ -41,6 +41,6 @@ const submissiondata = new mongoose.Schema({
   }
 });
 
-leveldataSchema.index({ username: 1, subject: 1, level: 1 }, { unique: true });
+submissiondata.index({ username: 1, subject: 1, level: 1 }, { unique: true });
 
 module.exports = mongoose.model('Submissiondata', submissiondata);

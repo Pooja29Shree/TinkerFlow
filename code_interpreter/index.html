@@ -466,6 +466,7 @@
         const activeFileElem = document.querySelector(".file-name.selected-file .openedfile");
         console.log(activeFileElem);
         if (!activeFileElem) {
+            alert("Please open a file to work with.")
             return;
         }
         // File is already there in PWD, so run with python3 filename
@@ -640,7 +641,6 @@
             }
         };
     }
-    loadQuestionsFromJson('Level 1.json'); // Load questions from level1.json on page load
     /* End of question management */
 
     // Yet to implement
@@ -702,8 +702,10 @@
             const files = await response.json();
             availableFiles = files.filter(f => f.endsWith('.py') || f.endsWith('.c'));
             updateFileList();
+            return availableFiles;  // return the files
         } catch (err) {
             console.error('Error fetching file list:', err);
+            return [];  // fail gracefully
         }
     }
     function cleanText(text) {
@@ -874,14 +876,16 @@
         }, 500); // save 0.5s after last change
     });
 
-    function openFileByName(fileName) {
-        if (availableFiles.includes(fileName)) {
-
-            const fileToOpen = Array.from(document.getElementsByClassName("file-item")).find(fn => fn.textContent.includes(fileName))
-            console.log(fileToOpen)
-            if (fileToOpen) {
-                console.log("yes")
-                fileToOpen.click();
+    async function openFileByName(fileName) {
+        const availableFiles = await loadFiles();
+        if (files.length === 0) {
+            console.log("No matching files found");
+        } else {
+            if (availableFiles.includes(fileName)) {
+                const fileToOpen = Array.from(document.getElementsByClassName("file-item")).find(fn => fn.textContent.includes(fileName))
+                if (fileToOpen) {
+                    fileToOpen.click();
+                }
             }
         }
     }
@@ -894,11 +898,17 @@
     const ASSEMBLYAI_API_KEY = "e07423c4d6494f4b82e1509a4e61f9cf";
 
     micBtn.addEventListener("click", function () {
+        const queryInput = document.getElementById("query");
+        const sendQueryBtn = document.getElementById("sendQuery");
         if (isRecording) { // Stop recording
             micBtn.src = "mic-on.svg";
+            queryInput.disabled = false;
+            sendQueryBtn.disabled = false;
             handleListenRelease();
         } else {  // Start recording
             micBtn.src = "mic-off.svg";
+            queryInput.disabled = true;
+            sendQueryBtn.disabled = true;
             handleListenPress();
         }
         isRecording = !isRecording;
@@ -990,6 +1000,10 @@
             hideLoading();
         }
     }
+
+    // Change these functions to open custom file
+    loadQuestionsFromJson('Level 1.json'); // Load questions from level1.json on page load
+    openFileByName("level-1.py");
 </script>
 
 </html>
