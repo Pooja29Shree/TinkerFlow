@@ -1,13 +1,5 @@
-# Node.js (backend)
-backend/node_modules/
-backend/.env
+# backend
 backend/package-lock.json
-
-# React (frontend)
-node_modules/
-
-# Code interpreter
-code_interpreter/node_modules/
 
 # Logs
 *.log
