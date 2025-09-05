@@ -90,7 +90,7 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
 
         <div className="action-bar">
           <button className="feature-btn" onClick={() => textToSpeech()}>🔊 Text to Voice</button>
-          <button className="feature-btn" onClick={() => navigate(`/codeeditor/${currentLanguageId}/${currentLevelId}`)}>💻 Practice Code</button>
+          <button className="feature-btn" onClick={() => navigate(`/codeeditor`)}>💻 Practice Code</button>
           <div className="quiz-dropdown" ref={dropdownRef}>
             <button className="feature-btn" onClick={() => setShowQuizDropdown(v => !v)}>
               📝 Take Quiz

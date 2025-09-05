@@ -66,13 +66,10 @@
         <div id="left-panel">
             <span class="o1">
                 <span class="options" id="filemanager" title="Files"><img src="files.svg"></span>
-                <span class="options" style="margin-bottom:10px" id="learncoding" title="Learning materials"><img
+                <span class="options" style="margin-bottom:10px" id="learncoding" title="Learning materials" onclick="goback()"><img
                         src="learn.svg"></span>
-                <span class="options" id="taketest" title="Tests"><img src="sword.svg"></span>
             </span>
             <span>
-                <span class="options" style="margin-bottom:10px" id="userprofile" title="Your account"><img
-                        src="avatar.svg"></span>
             </span>
         </div>
 
@@ -644,8 +641,10 @@
     /* End of question management */
 
     // Yet to implement
-    filemanager, learncoding, taketest, userprofile = document.getElementById("filemanager"), document.getElementById("learncoding"), document.getElementById("taketest"), document.getElementById("userprofile");
-    // Command prompt
+    filemanager, learncoding = document.getElementById("filemanager"), document.getElementById("learncoding")
+    function goback(){
+        window.history.back()
+    }
 
     // Toggle file manager panel and blur background, disable interactions
     document.getElementById("filemanager").addEventListener("click", function () {

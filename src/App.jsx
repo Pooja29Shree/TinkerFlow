@@ -120,6 +120,16 @@ function App() {
               )
             }
           />
+          <Route
+          path="/codeeditor"
+          element={
+            <iframe
+              src="http://localhost:3000"
+              style={{ width: "100%", height: "100vh", border: "none" }}
+              title="Code Editor"
+            />
+          }
+        />
         </Routes>
 
         {/* User modal (global) */}

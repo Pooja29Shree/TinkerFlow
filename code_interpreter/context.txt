@@ -28,7 +28,7 @@ Rules:
     - The format must be valid JavaScript, safe to eval() directly.
   2. "Run" button (id "run") (use document.getElementById('run').click())
   3. "Clear highlights" button  (use document.getElementById('clearHighlights').click())
-  4. Left panel icons: filemanager, learncoding, taketest, userprofile (use document.getElementById(id).click())
+  4. Left panel icons: filemanager, learncoding (use document.getElementById(id).click())
   5. A terminal (use runInTerminal(command) to run a terminal command). If the user asks you to do something in the terminal, this is what you use, and not use the question or the current code as reference.
   6. Utility options in the top left to switch coding language, font size, and color theme
 
