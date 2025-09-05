@@ -70,7 +70,7 @@ function LoginPage({ setCurrentUser }) {
         <div className="links">
           <p>
             Don’t have an account?{" "}
-            <span onClick={() => navigate("/create-account")}>Sign In</span>
+            <span onClick={() => navigate("/create-account")}>Sign Up</span>
           </p>
           <p>
             Forgot your password?{" "}

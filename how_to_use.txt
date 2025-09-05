@@ -1,0 +1,2 @@
+run `npm install` first in the root folder
+run `npm run dev` from the root folder, the app should open up in electron

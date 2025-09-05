@@ -22,3 +22,5 @@ coverage/
 
 # Database dumps or local data
 dump/
+
+node_modules/
