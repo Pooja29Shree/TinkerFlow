@@ -1,4 +1,4 @@
-const python4 = `
+const python4en = `
     <h2>Chapter 1: Introduction to Functions</h2>
     <h3>What is a Function?</h3>
     <p>In programming, a function is a block of reusable code that performs a specific task. Instead of writing the same code over and over again, we create a function once and use it whenever needed.</p>
@@ -80,4 +80,4 @@ def display_inventory():
 display_inventory()</code></pre>
 `
 
-export default python4;
+export default python4en;

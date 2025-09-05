@@ -27,6 +27,7 @@ function LoginPage({ setCurrentUser }) {
         setCurrentUser({
           name: user.username,
           initials: user.username.slice(0, 2).toUpperCase(),
+          email: user.email
         });
         setWarning("");
         navigate("/main");

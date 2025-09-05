@@ -1,4 +1,4 @@
-const python1 = `
+const python1en = `
     <h2>Chapter 1: Python Introduction - Setting up Python and Understanding the Interpreter</h2><h3>What is Python?</h3>
     <p>Python is a computer programming language that helps us give instructions to computers. Think of it like learning a new language to communicate with your computer. Just like how we use Tamil or English to talk to people, we use Python to talk to computers.</p>
 
@@ -81,4 +81,4 @@ print(type(name))  # <class 'str'>
 print(type(age))   # <class 'int'></code></pre>
 `
 
-export default python1;
+export default python1en;

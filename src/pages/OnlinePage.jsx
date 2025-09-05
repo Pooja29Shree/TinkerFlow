@@ -11,14 +11,25 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
   const [htmlContent, setHtmlContent] = useState("");
   const [showVideo, setShowVideo] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
+  const [lang, setLang] = useState("en");
+  const [showLangDropdown, setShowLangDropdown] = useState(false);
+  const langDropdownRef = useRef(null);
 
-  const textToSpeech = () => {
-    const content = "Welcome to Programming! In this level, you'll learn the fundamentals of programming.";
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(content);
-      speechSynthesis.speak(utterance);
-    } else {
-      alert("Text-to-speech not supported");
+  const languageOptions = [
+    { code: "en", label: "English" },
+    { code: "ta", label: "Tamil" },
+    { code: "te", label: "Telugu" },
+    { code: "hi", label: "Hindi" },
+    { code: "ml", label: "Malayalam" },
+    { code: "kn", label: "Kannada" },
+  ];
+
+  const loadHtml = async (langCode = lang) => {
+    try {
+      const module = await import(`../data/${currentLanguageId}/${langCode}/${currentLevelId}.js`);
+      setHtmlContent(module.default);
+    } catch (error) {
+      setHtmlContent("<p>Content not found.</p>");
     }
   };
 
@@ -37,41 +48,32 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
   }, [showQuizDropdown]);
 
   useEffect(() => {
-    async function loadHtml() {
-      try {
-        const module = await import(`../data/${currentLanguageId}/${currentLevelId}.js`);
-        setHtmlContent(module.default);
-      } catch (error) {
-        setHtmlContent("<p>Content not found.</p>");
-      }
-    }
-    loadHtml();
-  }, [currentLanguageId, currentLevelId]);
+    loadHtml(lang);
+    // eslint-disable-next-line
+  }, [currentLanguageId, currentLevelId, lang]);
 
   if (!level) return null;
 
   useEffect(() => {
-  async function fetchVideo() {
-    try {
-      const res = await fetch("http://localhost:5000/api/subjects/get-video", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          subject: currentLanguageId,
-          level: currentLevelId
-        })
-      });
+    async function fetchVideo() {
+      try {
+        const res = await fetch("http://localhost:5000/api/subjects/get-video", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            subject: currentLanguageId,
+            level: currentLevelId
+          })
+        });
 
-      const data = await res.json();
-      console.log(data.videoUrl||"no");
-      setVideoUrl(data.videoUrl || "");
-    } catch (err) {
-      console.error("Error fetching video:", err);
+        const data = await res.json();
+        setVideoUrl(data.videoUrl || "");
+      } catch (err) {
+        console.error("Error fetching video:", err);
+      }
     }
-  }
-  fetchVideo();
-}, [currentLanguageId, currentLevelId]);
-
+    fetchVideo();
+  }, [currentLanguageId, currentLevelId]);
 
   return (
     <div className="online-page">
@@ -89,7 +91,31 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
         </div>
 
         <div className="action-bar">
-          <button className="feature-btn" onClick={() => textToSpeech()}>🔊 Text to Voice</button>
+          <div className="translate-dropdown" ref={langDropdownRef}>
+            <button
+              className="feature-btn"
+              onClick={() => setShowLangDropdown(v => !v)}
+            >
+              🌐 Translate
+            </button>
+            {showLangDropdown && (
+              <div className="dropdown-menu">
+                {languageOptions.map(opt => (
+                  <button
+                    key={opt.code}
+                    className="dropdown-item"
+                    onClick={() => {
+                      setLang(opt.code);
+                      setShowLangDropdown(false);
+                      loadHtml(opt.code);
+                    }}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <button className="feature-btn" onClick={() => navigate(`/codeeditor`)}>💻 Practice Code</button>
           <div className="quiz-dropdown" ref={dropdownRef}>
             <button className="feature-btn" onClick={() => setShowQuizDropdown(v => !v)}>
@@ -97,66 +123,28 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
             </button>
             {showQuizDropdown && (
               <div className="quiz-dropdown-content">
-                <button onClick={() => navigate(`/blockquiz/${currentLanguageId}/${currentLevelId}`)}>🧩 Block Quiz</button>
-                <button onClick={() => navigate(`/quiz/${currentLanguageId}/${currentLevelId}`)}>✍️ MCQ Quiz</button>
+                <button className="dropdown-item" onClick={() => navigate(`/blockquiz/${currentLanguageId}/${currentLevelId}`)}>🧩 Block Quiz</button>
+                <button className="dropdown-item" onClick={() => navigate(`/quiz/${currentLanguageId}/${currentLevelId}`)}>✍️ MCQ Quiz</button>
               </div>
             )}
           </div>
           <div className="visual-panel">
             <button
-              className="feature-btn"
-              style={{ marginTop: "16px" }}
+              className="feature-btn visual-btn"
               onClick={() => setShowVideo(true)}
             >
               🎥 Visual Learning
             </button>
             {showVideo && videoUrl && (
-              <div
-                style={{
-                  position: "fixed",
-                  top: 0,
-                  left: 0,
-                  width: "100vw",
-                  height: "100vh",
-                  background: "rgba(0,0,0,0.7)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  zIndex: 1000
-                }}
-                onClick={() => setShowVideo(false)}
-              >
-                <div
-                  style={{
-                    background: "#fff",
-                    padding: "24px",
-                    borderRadius: "12px",
-                    boxShadow: "0 2px 16px rgba(0,0,0,0.2)",
-                    position: "relative"
-                  }}
-                  onClick={e => e.stopPropagation()}
-                >
-                  <button
-                    style={{
-                      position: "absolute",
-                      top: 8,
-                      right: 8,
-                      background: "#eee",
-                      border: "none",
-                      borderRadius: "50%",
-                      width: 32,
-                      height: 32,
-                      fontSize: 18,
-                      cursor: "pointer"
-                    }}
-                    onClick={() => setShowVideo(false)}
-                  >
+              <div className="video-modal" onClick={() => setShowVideo(false)}>
+                <div className="video-modal-content" onClick={e => e.stopPropagation()}>
+                  <button className="video-modal-close" onClick={() => setShowVideo(false)}>
                     ×
                   </button>
                   <video
                     src={videoUrl}
                     controls
-                    style={{ width: "480px", maxWidth: "80vw", borderRadius: "8px" }}
+                    className="video-player"
                   >
                     Your browser does not support the video tag.
                   </video>
@@ -169,15 +157,6 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
         <div className="content-section">
           <div
             className="content-panel"
-            style={{
-              width: "85%",
-              overflowY: "auto",
-              background: "#fff",
-              border: "1px solid #ddd",
-              borderRadius: "8px",
-              padding: "16px",
-              marginBottom: "16px"
-            }}
             dangerouslySetInnerHTML={{ __html: htmlContent }}
           />
         </div>

@@ -1,4 +1,4 @@
-const python3 = `
+const python3en = `
 
     <h2>Introduction</h2>
     <p>In programming, we often need to repeat certain tasks multiple times. Instead of writing the same code over and over again, Python provides us with loops. Think of loops like a farmer who needs to water 100 plants in his field. Instead of going to each plant individually and thinking about it separately, he follows a simple pattern: go to plant, water it, move to next plant, repeat until all plants are watered.</p>
@@ -77,4 +77,4 @@ for number in range(2, 51):
 </code></pre>
 `
 
-export default python3;
+export default python3en;

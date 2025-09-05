@@ -1,4 +1,4 @@
-const python5 = `
+const python5en = `
     <h2>Chapter 1: Understanding Recursion in Python</h2>
     <h3>What is Recursion?</h3>
     <p>Recursion is a programming technique where a function calls itself to solve a problem. It breaks down complex problems into smaller, similar problems.</p>
@@ -69,4 +69,4 @@ def list_files_recursive(directory, level=0):
 # list_files_recursive("/path/to/directory")</code></pre>
 `
 
-export default python5;
+export default python5en;

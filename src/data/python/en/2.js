@@ -1,4 +1,4 @@
-const python2 = `
+const python2en = `
     <h2>Chapter 1: Python Operators</h2>
     <p><strong>What are Operators?</strong><br>
     Operators are special symbols that tell Python to perform specific operations on data. Think of operators like tools in a toolbox - each tool has a specific job to do. Just like how a hammer is used for hitting nails and a screwdriver for turning screws, different operators do different jobs with our data.</p>
@@ -295,4 +295,4 @@ else:
     </ol>
 `;
 
-export default python2;
+export default python2en;
