@@ -26,8 +26,8 @@ const OnlinePage = ({ currentUser, currentLanguageId, currentLevelId, setShowUse
 
   const loadHtml = async (langCode = lang) => {
     try {
-      const module = await import(`../data/${currentLanguageId}/${langCode}/${currentLevelId}.js`);
-      setHtmlContent(module.default);
+      const module = await import(`../data/${currentLanguageId}/${currentLevelId}.js`);
+      setHtmlContent(module[langCode]);
     } catch (error) {
       setHtmlContent("<p>Content not found.</p>");
     }

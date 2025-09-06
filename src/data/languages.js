@@ -8,7 +8,7 @@ const languages = {
       { id: 2, title: "Operations and Logic", description: "Basic operations, logical expressions and conditional statements" },
       { id: 3, title: "Control Flow", description: "Loops and conditional statements" },
       { id: 4, title: "Functions and Modules", description: "Code organization and reusability" },
-      { id: 5, title: "Object-Oriented Programming", description: "Classes and inheritance" }
+      { id: 5, title: "Recursion", description: "Understanding and implementing recursion" }
     ]
   },
   cpp: {
